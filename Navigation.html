@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complex Navigation Styling</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        nav {
+            background: #333;
+            padding: 15px;
+        }
+        
+        .nav-section {
+            margin-bottom: 10px;
+        }
+        
+        .nav-section a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            display: inline-block;
+        }
+        
+        .nav-section a:hover {
+            background: #555;
+        }
+        
+        .nav-section a:active {
+            background: #777;
+        }
+        
+        .nav-section > a {
+            font-weight: bold;
+        }
+        
+        .nav-section:nth-child(1) a {
+            color: lightcoral;
+        }
+        
+        .nav-section:nth-child(2) a {
+            color: lightseagreen;
+        }
+        
+        .nav-section:nth-child(3) a {
+            color: lightskyblue;
+        }
+        
+        .nav-section a[href^="https"] {
+            color: gold !important;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-section">
+            <a href="#">Home</a>
+            <a href="https://example.com">External Link</a>
+            <div>
+                <a href="#">Nested Link 1</a>
+                <a href="#">Nested Link 2</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <a href="#">About</a>
+            <a href="#">Team</a>
+        </div>
+        <div class="nav-section">
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+</body>
+</html>
