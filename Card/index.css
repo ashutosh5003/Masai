@@ -1,0 +1,46 @@
+* {  
+    margin: 0;  
+    padding: 0;  
+    box-sizing: border-box; /* Important for maintaining correct dimensions */  
+}  
+
+body {  
+    font-family: sans-serif;  
+}  
+
+.container {  
+    display: flex; /* Use flexbox for horizontal layout */  
+    padding: 20px;  
+    justify-content: space-around; /* Distribute boxes evenly */  
+    align-items: center; /* Vertically center items */  
+    max-width: 800px;  
+    margin: 0 auto; /* Center the container */  
+}  
+
+.box {  
+    width: 100px;  
+    height: 100px;  
+    background: lightblue;  
+    border: 1px solid black;  
+    margin: 10px; /* Add spacing around boxes */  
+    position: static; /* Remove absolute positioning */  
+    text-align: center;  
+    line-height: 100px; /* Vertically center text within the box */  
+}  
+
+.text {  
+    position: relative; /* Changed from fixed to relative */  
+    left: 0; /* Reset left position */  
+    top: 20px; /* Add some top spacing */  
+    text-align: center; /* Center the text */  
+    margin: 20px auto;  
+    width: 100%;  
+}  
+
+/* Responsive Design */  
+@media (max-width: 600px) {  
+    .container {  
+        flex-direction: column; /* Stack boxes vertically on smaller screens */  
+        align-items: center;  
+    }  
+}  
