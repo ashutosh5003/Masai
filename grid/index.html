@@ -1,0 +1,69 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<title>Grid Example</title>  
+<style>  
+.grid-container {  
+  display: grid;  
+  grid-template-columns: repeat(4, 1fr);  
+  grid-template-rows: repeat(2, 1fr);  
+  gap: 0px; /* Optional: Adjust the gap between grid items */  
+  width: 400px; /* Adjust width as needed */  
+  height: 200px; /* Adjust height as needed */  
+}  
+
+.grid-item {  
+  text-align: center;  
+  padding: 20px;  
+  font-size: 20px;  
+  color: white;  
+}  
+
+.grid-item:nth-child(1) {  
+  background-color: #3498db;  
+}  
+
+.grid-item:nth-child(2) {  
+  background-color: #e74c3c;  
+}  
+
+.grid-item:nth-child(3) {  
+  background-color: #2ecc71;  
+}  
+
+.grid-item:nth-child(4) {  
+  background-color: #f39c12;  
+}  
+
+.grid-item:nth-child(5) {  
+  background-color: #9b59b6;  
+}  
+
+.grid-item:nth-child(6) {  
+  background-color: #1abc9c;  
+}  
+
+.grid-item:nth-child(7) {  
+  background-color: #d35400;  
+}  
+
+.grid-item:nth-child(8) {  
+  background-color: #34495e;  
+}  
+</style>  
+</head>  
+<body>  
+
+<div class="grid-container">  
+  <div class="grid-item">1</div>  
+  <div class="grid-item">2</div>  
+  <div class="grid-item">3</div>  
+  <div class="grid-item">4</div>  
+  <div class="grid-item">5</div>  
+  <div class="grid-item">6</div>  
+  <div class="grid-item">7</div>  
+  <div class="grid-item">8</div>  
+</div>  
+
+</body>  
+</html>  
