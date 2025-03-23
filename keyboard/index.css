@@ -1,0 +1,45 @@
+body {  
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
+    height: 100vh;  
+    background-color: #00BFFF; /* Light blue background */  
+    margin: 0;  
+}  
+
+.keyboard {  
+    display: flex;  
+    flex-direction: column;  
+}  
+
+.row {  
+    display: flex;  
+}  
+
+.key {  
+    background-color: #333; /* Dark background color for keys */  
+    color: #00FFFF; /* Light cyan text color */  
+    padding: 15px 20px;  
+    margin: 2px;  
+    border-radius: 5px;  
+    text-align: center;  
+    font-family: 'Arial', sans-serif;  
+    font-size: 16px;  
+    flex: 1; /* Makes each key a flexible size */  
+}  
+
+.key:nth-child(11),  
+.key:nth-child(12) { /* Adjusting width for special keys */  
+    flex: 2;  
+}  
+
+.key:nth-child(1),  
+.key:nth-child(12) { /* More space for Tab and Enter */  
+    flex: 2;  
+}  
+
+.key:nth-child(2),  
+.key:nth-child(12),  
+.key:nth-child(11) {  
+    flex: 2; /* Wider space for the last two keys in each row */  
+}  
