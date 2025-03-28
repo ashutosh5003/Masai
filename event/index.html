@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Propagation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .outer {
+            background-color: lightcoral;
+            padding: 30px;
+        }
+        .middle {
+            background-color: lightblue;
+            padding: 30px;
+        }
+        .inner {
+            background-color: lightgreen;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Event Propagation Exploration</h2>
+
+    <div class="outer" id="outer">
+        Outer Div
+        <div class="middle" id="middle">
+            Middle Div
+            <div class="inner" id="inner">
+                Inner Div
+                <button id="inner-button">Click Me</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+s
