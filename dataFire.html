@@ -1,0 +1,135 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+  <title>Add User to Firebase</title>  
+  <style>  
+    body {  
+      font-family: sans-serif;  
+    }  
+    .container {  
+      width: 500px;  
+      margin: 0 auto;  
+      padding: 20px;  
+      border: 1px solid #ccc;  
+    }  
+    input[type="text"], input[type="email"] {  
+      width: 100%;  
+      padding: 10px;  
+      margin-bottom: 10px;  
+      border: 1px solid #ddd;  
+    }  
+    button {  
+      padding: 10px 20px;  
+      background-color: #4CAF50;  
+      color: white;  
+      border: none;  
+      cursor: pointer;  
+    }  
+    .message {  
+      margin-top: 10px;  
+      padding: 10px;  
+      border-radius: 5px;  
+    }  
+    .success {  
+      background-color: #d4edda;  
+      color: #155724;  
+    }  
+    .error {  
+      background-color: #f8d7da;  
+      color: #721c24;  
+    }  
+  </style>  
+</head>  
+<body>  
+
+  <div class="container">  
+    <h2>Add New User</h2>  
+
+    <form id="userForm">  
+      <label for="name">Name:</label>  
+      <input type="text" id="name" name="name" required><br><br>  
+
+      <label for="email">Email:</label>  
+      <input type="email" id="email" name="email" required><br><br>  
+
+      <button type="submit">Add User</button>  
+    </form>  
+
+    <div id="message" class="message" style="display:none;"></div>  
+  </div>  
+
+  <script>  
+    const form = document.getElementById('userForm');  
+    const messageDiv = document.getElementById('message');  
+
+    form.addEventListener('submit', function(event) {  
+      event.preventDefault(); // Prevent default form submission  
+
+      const name = document.getElementById('name').value;  
+      const email = document.getElementById('email').value;  
+
+      // Replace with your Firebase Realtime Database URL  
+      const databaseURL = 'YOUR_FIREBASE_DATABASE_URL'; // e.g., 'https://your-project-id.firebaseio.com/users.json'  
+
+
+      // Validate inputs (optional but recommended)  
+      if (!name || !email) {  
+          showMessage('Please fill in all fields.', 'error');  
+          return;  
+      }  
+
+      // Basic email validation  
+      if (!isValidEmail(email)) {  
+          showMessage('Please enter a valid email address.', 'error');  
+          return;  
+      }  
+
+      // Create data object  
+      const userData = {  
+        name: name,  
+        email: email  
+      };  
+
+
+      // Make the POST request using the Fetch API  
+      fetch(databaseURL, {  
+        method: 'POST',  
+        headers: {  
+          'Content-Type': 'application/json'  
+        },  
+        body: JSON.stringify(userData)  
+      })  
+      .then(response => {  
+        if (!response.ok) {  
+          throw new Error('Network response was not ok');  
+        }  
+        return response.json();  
+      })  
+      .then(data => {  
+        console.log('Success:', data);  
+        showMessage('User added successfully!', 'success');  
+        form.reset(); // Clear the form  
+      })  
+      .catch(error => {  
+        console.error('Error:', error);  
+        showMessage('Failed to add user: ' + error, 'error');  
+      });  
+    });  
+
+    function showMessage(message, type) {  
+      messageDiv.textContent = message;  
+      messageDiv.className = 'message ' + type;  
+      messageDiv.style.display = 'block';  
+    }  
+
+
+    function isValidEmail(email) {  
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  
+        return emailRegex.test(email);  
+    }  
+
+
+  </script>  
+
+</body>  
+</html>  
