@@ -1,0 +1,100 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+  <title>Firebase Realtime Database Example</title>  
+  <style>  
+    table {  
+      border-collapse: collapse;  
+      width: 80%;  
+      margin: 20px auto;  
+    }  
+    th, td {  
+      border: 1px solid black;  
+      padding: 8px;  
+      text-align: left;  
+    }  
+    th {  
+      background-color: #f2f2f2;  
+    }  
+  </style>  
+</head>  
+<body>  
+
+  <h1>User List</h1>  
+
+  <table id="userTable">  
+    <thead>  
+      <tr>  
+        <th>Name</th>  
+        <th>Email</th>  
+      </tr>  
+    </thead>  
+    <tbody>  
+      <!-- User data will be inserted here -->  
+    </tbody>  
+  </table>  
+
+  <p id="errorMessage" style="color: red;"></p>  
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>  
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>  
+  <script>  
+    // Firebase configuration  
+    const firebaseConfig = {  
+      // Replace with your actual Firebase configuration  
+      apiKey: "YOUR_API_KEY",  
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",  
+      databaseURL: "YOUR_DATABASE_URL.firebaseio.com",  
+      projectId: "YOUR_PROJECT_ID",  
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",  
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",  
+      appId: "YOUR_APP_ID",  
+      measurementId: "YOUR_MEASUREMENT_ID"  
+    };  
+
+    // Initialize Firebase  
+    const app = firebase.initializeApp(firebaseConfig);  
+    const database = firebase.database();  
+
+    // Function to fetch data from Firebase  
+    function getUsers() {  
+      const usersRef = database.ref('users');  
+
+      usersRef.get()  
+        .then((snapshot) => {  
+          if (snapshot.exists()) {  
+            const users = snapshot.val();  
+            populateTable(users);  
+          } else {  
+            document.getElementById('errorMessage').innerText = "No users found in the database.";  
+          }  
+        })  
+        .catch((error) => {  
+          document.getElementById('errorMessage').innerText = "Error fetching data: " + error;  
+        });  
+    }  
+
+    // Function to populate the table with user data  
+    function populateTable(users) {  
+      const tableBody = document.getElementById('userTable').getElementsByTagName('tbody')[0];  
+      tableBody.innerHTML = ''; // Clear existing data  
+
+      for (const userId in users) {  
+        if (users.hasOwnProperty(userId)) {  
+          const user = users[userId];  
+          const row = tableBody.insertRow();  
+
+          const nameCell = row.insertCell();  
+          nameCell.innerText = user.name;  
+
+          const emailCell = row.insertCell();  
+          emailCell.innerText = user.email;  
+        }  
+      }  
+    }  
+
+    // Call the getUsers function when the page loads  
+    window.onload = getUsers;  
+  </script>  
+</body>  
+</html>  
